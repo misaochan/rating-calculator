@@ -15,18 +15,20 @@ methodCObj = MethodC()
 def ratingcalc(obj):
     resultsum = 0
     for i in range(10):
-        goodcat = float(obj.goodcatlist[i])
-        falsepos = float(obj.falseposlist[i])
-        manualcat = float(manualcatlist[i])
-        result = ((goodcat - falsepos)/3)/manualcat
-        print "Score for sample", (i+1), "=", result
+        goodcat = obj.goodcatlist[i]
+        falsepos = obj.falseposlist[i]
+        manualcat = manualcatlist[i]
+        
+        result = ((float(goodcat) - float(falsepos))/3)/float(manualcat)
+        print "Sample", (i+1), ":", goodcat, "good categories,", falsepos, "false positives,", manualcat, "manual categories."
+        print "Score =", result
         resultsum = resultsum + result
         
     print "Total score =", resultsum
 
-print "Scoring WikiData results..."        
+print "WikiData results:"        
 ratingcalc(wikiDataObj)
 print "\n"
 
-print "Scoring Method C results..."
+print "Method C results:"
 ratingcalc(methodCObj)
